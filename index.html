@@ -1,0 +1,658 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Amlou — Brunch marocain toute la journée · 8 rue Saint-Jean, Caen</title>
+<meta name="description" content="Amlou, maison marocaine à Caen : brunch du mardi au dimanche de 9h30 à 19h, plat du chef chaque midi, salon pour les groupes, commandes à emporter. 8 rue Saint-Jean, 14000 Caen.">
+<meta property="og:title" content="Amlou — Le Maroc se lève rue Saint-Jean">
+<meta property="og:description" content="Brunch marocain du mardi au dimanche, 9h30 – 19h. Plat du chef chaque midi. 8 rue Saint-Jean, Caen.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#1F4D40">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght,SOFT@0,9..144,300..800,50;1,9..144,300..800,100&family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;600&family=Amiri:wght@700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#F3EADB; --paper-2:#E9DAC2; --ink:#17211D; --muted:#5F5E53; --line:rgba(23,33,29,.14);
+  --mint:#1F4D40; --mint-2:#2E6B58; --saffron:#E3A42B; --rose:#C9604F; --night:#22192C;
+  --ease:cubic-bezier(.16,1,.3,1); --bounce:cubic-bezier(.3,1.6,.5,1);
+  --fd:'Fraunces',Georgia,serif; --fb:'Instrument Sans',system-ui,sans-serif; --fm:'JetBrains Mono',ui-monospace,monospace;
+  --pad:clamp(20px,5vw,72px);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--paper);color:var(--ink);font-family:var(--fb);font-size:17px;line-height:1.55;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+img,svg{display:block;max-width:100%}
+a{color:inherit}
+button{font:inherit;color:inherit;cursor:pointer;border:0;background:none}
+:focus-visible{outline:2px solid var(--saffron);outline-offset:3px;border-radius:6px}
+em{font-style:italic;font-variation-settings:"SOFT" 100,"WONK" 1}
+.grain{position:fixed;inset:0;pointer-events:none;z-index:90;opacity:.07;mix-blend-mode:multiply;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+/* preloader */
+.pre{position:fixed;inset:0;z-index:100;background:var(--mint);display:grid;place-items:center;color:var(--paper);transition:clip-path 1s var(--ease);clip-path:inset(0 0 0 0)}
+.pre.out{clip-path:inset(0 0 100% 0)}
+.pre svg{width:92px;height:92px}
+.pre path{fill:none;stroke:var(--saffron);stroke-width:1.6;stroke-dasharray:600;stroke-dashoffset:600;animation:draw 1.1s var(--ease) forwards}
+.pre .n{font-family:var(--fm);font-size:13px;letter-spacing:.2em;margin-top:18px;text-align:center;opacity:.8}
+@keyframes draw{to{stroke-dashoffset:0}}
+
+/* nav */
+.nav{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:calc(14px + env(safe-area-inset-top)) var(--pad) 14px;transition:background .4s var(--ease),backdrop-filter .4s}
+.nav.solid{background:rgba(243,234,219,.88);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.logo{display:flex;align-items:baseline;gap:10px;text-decoration:none;font-family:var(--fd);font-weight:600;font-size:26px;letter-spacing:-.02em}
+.logo span{font-family:'Amiri',serif;font-size:20px;color:var(--mint-2)}
+.nav ul{display:flex;gap:28px;list-style:none;font-size:15px}
+.nav ul a{text-decoration:none;position:relative}
+.nav ul a::after{content:"";position:absolute;left:0;right:0;bottom:-3px;height:1px;background:currentColor;transform:scaleX(0);transform-origin:right;transition:transform .35s var(--ease)}
+.nav ul a:hover::after{transform:scaleX(1);transform-origin:left}
+.nav-r{display:flex;align-items:center;gap:10px}
+.status{display:inline-flex;align-items:center;gap:8px;font-family:var(--fm);font-size:12px;letter-spacing:.04em;padding:8px 12px;border:1px solid var(--line);border-radius:99px;background:rgba(255,255,255,.35);white-space:nowrap}
+.status i{width:8px;height:8px;border-radius:50%;background:#9a9a8f}
+.status.open i{background:#2E9E6A;box-shadow:0 0 0 0 rgba(46,158,106,.6);animation:pulse 2s infinite}
+@keyframes pulse{70%{box-shadow:0 0 0 8px rgba(46,158,106,0)}100%{box-shadow:0 0 0 0 rgba(46,158,106,0)}}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:48px;padding:0 22px;border-radius:99px;text-decoration:none;font-weight:600;font-size:15px;transition:transform .25s var(--bounce),background .25s,color .25s;will-change:transform}
+.btn-dark{background:var(--ink);color:var(--paper)}
+.btn-dark:hover{background:var(--mint)}
+.btn-line{border:1.5px solid var(--ink)}
+.btn-line:hover{background:var(--ink);color:var(--paper)}
+.btn-saf{background:var(--saffron);color:var(--ink)}
+.btn-saf:hover{background:#f0b84a}
+.btn svg{width:16px;height:16px}
+@media (max-width:900px){.nav ul{display:none}}
+@media (max-width:520px){.nav .btn{display:none}.tabs button{padding:0 12px;font-size:14px}}
+
+/* hero */
+.hero{position:relative;height:100vh;height:100svh;min-height:600px;overflow:hidden}
+.hero-top{position:absolute;top:0;left:0;right:0;padding:calc(110px + env(safe-area-inset-top)) var(--pad) 0;display:flex;flex-direction:column;align-items:center;text-align:center;z-index:2}
+.kicker{font-family:var(--fm);font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:var(--muted)}
+.h1{font-family:var(--fd);font-weight:400;font-size:clamp(46px,8.6vw,138px);line-height:.92;letter-spacing:-.035em;margin:16px 0 0}
+.h1 .l{display:block;overflow:hidden;padding-bottom:.06em}
+.h1 .l>span{display:inline-block}
+.h1 em{color:var(--mint-2)}
+.hero-cta{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:26px}
+.arch{position:absolute;left:50%;bottom:0;transform:translateX(-50%);width:min(440px,72vw);height:36vh;min-height:220px;border-radius:999px 999px 0 0;background:var(--mint);overflow:hidden;z-index:1}
+.arch .zel{position:absolute;inset:-50%;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='none' stroke='%23E3A42B' stroke-opacity='.35' stroke-width='1'%3E%3Crect x='20' y='20' width='40' height='40'/%3E%3Crect x='20' y='20' width='40' height='40' transform='rotate(45 40 40)'/%3E%3Ccircle cx='40' cy='40' r='8'/%3E%3Cpath d='M0 0L20 20M80 0L60 20M0 80L20 60M80 80L60 60'/%3E%3C/g%3E%3C/svg%3E");background-size:80px;animation:spin 120s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.arch-in{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;color:var(--paper);text-align:center;padding:24px}
+.arch-ar{font-family:'Amiri',serif;font-size:clamp(70px,11vw,170px);line-height:1;color:var(--saffron)}
+.arch-sub{font-family:var(--fm);font-size:12px;letter-spacing:.22em;text-transform:uppercase;margin-top:14px;opacity:.85}
+.arch-big{position:absolute;left:0;right:0;bottom:12vh;padding:0 var(--pad);font-family:var(--fd);font-size:clamp(34px,5.4vw,84px);line-height:1;letter-spacing:-.03em;opacity:0}
+.arch-big em{color:var(--saffron)}
+.scroll-hint{position:absolute;bottom:20px;right:var(--pad);z-index:3;font-family:var(--fm);font-size:11px;letter-spacing:.2em;color:var(--muted);writing-mode:vertical-rl}
+
+/* marquee */
+.marq{background:var(--ink);color:var(--paper);overflow:hidden;padding:18px 0;border-block:1px solid #000}
+.marq-t{display:flex;gap:48px;width:max-content;animation:mq 34s linear infinite;font-family:var(--fd);font-size:clamp(22px,2.6vw,34px);font-style:italic;white-space:nowrap}
+.marq-t span{display:inline-flex;align-items:center;gap:48px}
+.marq-t span::after{content:"";width:12px;height:12px;background:var(--saffron);transform:rotate(45deg)}
+@keyframes mq{to{transform:translateX(-50%)}}
+
+/* sections */
+section{position:relative}
+.sec{padding:clamp(90px,12vw,170px) var(--pad)}
+.eyebrow{display:flex;align-items:center;gap:12px;font-family:var(--fm);font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+.eyebrow b{color:var(--rose);font-weight:600}
+.h2{font-family:var(--fd);font-weight:400;font-size:clamp(38px,5.6vw,88px);line-height:.95;letter-spacing:-.035em;margin-top:18px;max-width:14ch}
+.h2 em{color:var(--mint-2)}
+.lead{max-width:52ch;color:var(--muted);margin-top:20px;font-size:18px}
+.rv{opacity:0;transform:translateY(28px);transition:opacity 1s var(--ease),transform 1s var(--ease)}
+.rv.in{opacity:1;transform:none}
+
+/* journée */
+.day-wrap{display:grid;grid-template-columns:1.35fr 1fr;gap:clamp(24px,4vw,60px);margin-top:56px;align-items:stretch}
+.scene{position:relative;border-radius:28px;overflow:hidden;background:var(--paper-2);border:1px solid var(--line);aspect-ratio:1000/620;touch-action:pan-y}
+.scene svg{width:100%;height:100%}
+.steam path{fill:none;stroke:#fff;stroke-width:3;stroke-linecap:round;opacity:0;animation:steam 3.2s ease-in-out infinite}
+.steam path:nth-child(2){animation-delay:1.1s}.steam path:nth-child(3){animation-delay:2.1s}
+@keyframes steam{0%{opacity:0;transform:translateY(10px)}40%{opacity:.7}100%{opacity:0;transform:translateY(-30px)}}
+.dial{margin-top:22px}
+.dial-row{display:flex;justify-content:space-between;align-items:end;gap:16px}
+.clock{font-family:var(--fm);font-size:clamp(40px,5vw,64px);font-weight:600;letter-spacing:-.03em;line-height:1}
+.now-btn{font-family:var(--fm);font-size:12px;letter-spacing:.1em;text-transform:uppercase;border:1px solid var(--line);padding:10px 14px;border-radius:99px;min-height:44px}
+.now-btn:hover{background:var(--ink);color:var(--paper)}
+input[type=range]{-webkit-appearance:none;appearance:none;width:100%;height:44px;background:transparent;margin-top:14px}
+input[type=range]::-webkit-slider-runnable-track{height:6px;border-radius:9px;background:linear-gradient(90deg,#F6C99A,#BFDCD3 35%,#F0A85E 72%,#5B3557)}
+input[type=range]::-moz-range-track{height:6px;border-radius:9px;background:linear-gradient(90deg,#F6C99A,#BFDCD3 35%,#F0A85E 72%,#5B3557)}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:30px;height:30px;border-radius:50%;background:var(--saffron);border:4px solid var(--paper);box-shadow:0 4px 14px rgba(0,0,0,.25);margin-top:-12px;transition:transform .2s var(--bounce)}
+input[type=range]::-moz-range-thumb{width:24px;height:24px;border-radius:50%;background:var(--saffron);border:4px solid var(--paper);box-shadow:0 4px 14px rgba(0,0,0,.25)}
+input[type=range]:active::-webkit-slider-thumb{transform:scale(1.15)}
+.ticks{display:flex;justify-content:space-between;font-family:var(--fm);font-size:11px;color:var(--muted);margin-top:2px}
+.moment{border-radius:28px;background:var(--ink);color:var(--paper);padding:clamp(26px,3vw,40px);display:flex;flex-direction:column;gap:18px;position:relative;overflow:hidden}
+.moment .tag{font-family:var(--fm);font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--saffron)}
+.moment h3{font-family:var(--fd);font-weight:400;font-size:clamp(32px,3.4vw,50px);line-height:1;letter-spacing:-.03em}
+.moment p{color:rgba(243,234,219,.75)}
+.moment ul{list-style:none;display:grid;gap:10px;margin-top:auto}
+.moment li{display:flex;justify-content:space-between;gap:12px;padding-top:10px;border-top:1px solid rgba(243,234,219,.15);font-size:15px}
+.moment li b{font-family:var(--fm);font-weight:400;font-size:13px;color:var(--saffron)}
+.moment .swap{transition:opacity .35s var(--ease),transform .35s var(--ease)}
+.moment .swap.out{opacity:0;transform:translateY(8px)}
+.closed-note{font-size:14px;padding:12px 14px;border-radius:14px;background:rgba(227,164,43,.12);color:var(--saffron);display:none}
+.closed-note.on{display:block}
+
+/* amlou */
+.amlou{background:var(--mint);color:var(--paper)}
+.amlou .eyebrow{color:rgba(243,234,219,.6)}.amlou .eyebrow b{color:var(--saffron)}
+.amlou .h2 em{color:var(--saffron)}
+.amlou-pin{display:grid;grid-template-columns:1fr 1fr;gap:clamp(30px,6vw,100px);align-items:center;min-height:100vh;padding:var(--pad)}
+.jar{width:min(420px,80%);margin:auto}
+.steps{list-style:none;display:grid;gap:8px;margin-top:40px}
+.step{display:grid;grid-template-columns:52px 1fr;gap:14px;padding:18px 0;border-top:1px solid rgba(243,234,219,.15);opacity:.35;transition:opacity .5s var(--ease)}
+.step.on{opacity:1}
+.step span{font-family:var(--fm);font-size:13px;color:var(--saffron);padding-top:6px}
+.step h4{font-family:var(--fd);font-weight:400;font-size:clamp(24px,2.4vw,34px);letter-spacing:-.02em;line-height:1.1}
+.step p{color:rgba(243,234,219,.7);font-size:15px;margin-top:4px}
+.labels{display:flex;flex-wrap:wrap;gap:8px;margin-top:28px}
+.labels span{font-family:var(--fm);font-size:12px;letter-spacing:.08em;padding:8px 12px;border:1px solid rgba(243,234,219,.3);border-radius:99px}
+
+/* groupe */
+.grp{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,4vw,60px);margin-top:56px}
+.tabs{display:inline-flex;padding:5px;border-radius:99px;background:var(--paper-2);border:1px solid var(--line)}
+.tabs button{min-height:44px;padding:0 18px;border-radius:99px;font-weight:600;font-size:15px;transition:background .3s var(--ease),color .3s}
+.tabs button[aria-selected=true]{background:var(--ink);color:var(--paper)}
+.form{display:grid;gap:22px;margin-top:28px}
+.field label,.field .lab{display:block;font-family:var(--fm);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+.stepper{display:inline-flex;align-items:center;border:1.5px solid var(--ink);border-radius:99px}
+.stepper button{width:48px;height:48px;font-size:22px}
+.stepper output{min-width:60px;text-align:center;font-family:var(--fm);font-size:22px;font-weight:600}
+.field input[type=date],.field input[type=time],.field input[type=text]{width:100%;min-height:50px;padding:0 16px;border-radius:14px;border:1.5px solid var(--line);background:#fff;font:inherit;color:var(--ink)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips button{min-height:44px;padding:0 16px;border-radius:99px;border:1.5px solid var(--line);font-size:15px;transition:all .25s var(--ease)}
+.chips button[aria-pressed=true]{background:var(--mint);border-color:var(--mint);color:var(--paper)}
+.letter{position:relative;background:#fff;border-radius:28px;padding:clamp(26px,3vw,44px);border:1px solid var(--line);box-shadow:0 30px 60px -30px rgba(23,33,29,.35);display:flex;flex-direction:column}
+.letter::before{content:"";position:absolute;inset:10px;border:1px dashed rgba(31,77,64,.25);border-radius:20px;pointer-events:none}
+.letter .to{font-family:var(--fm);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.letter .msg{font-family:var(--fd);font-size:clamp(22px,2.2vw,30px);line-height:1.3;letter-spacing:-.01em;margin:22px 0 30px;flex:1}
+.letter .msg mark{background:linear-gradient(transparent 60%,rgba(227,164,43,.45) 0);color:inherit}
+.letter-cta{display:flex;flex-wrap:wrap;gap:10px}
+.toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom));transform:translate(-50%,120px);background:var(--ink);color:var(--paper);padding:14px 20px;border-radius:99px;font-size:15px;z-index:95;transition:transform .5s var(--bounce)}
+.toast.on{transform:translate(-50%,0)}
+
+/* savoir */
+.faq{margin-top:50px;border-top:1px solid var(--line);max-width:980px}
+.faq details{border-bottom:1px solid var(--line)}
+.faq summary{list-style:none;display:flex;justify-content:space-between;align-items:center;gap:20px;padding:26px 0;cursor:pointer;font-family:var(--fd);font-size:clamp(22px,2.4vw,32px);letter-spacing:-.02em}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary i{flex:none;width:36px;height:36px;border-radius:50%;border:1.5px solid var(--ink);position:relative;transition:transform .4s var(--ease),background .3s}
+.faq summary i::before,.faq summary i::after{content:"";position:absolute;left:50%;top:50%;width:12px;height:1.5px;background:currentColor;transform:translate(-50%,-50%)}
+.faq summary i::after{transform:translate(-50%,-50%) rotate(90deg)}
+.faq details[open] summary i{transform:rotate(45deg);background:var(--saffron);border-color:var(--saffron)}
+.faq .ans{overflow:hidden;color:var(--muted);max-width:64ch}
+.faq .ans p{padding:0 0 26px}
+
+/* venir */
+.venir{background:var(--ink);color:var(--paper)}
+.venir .eyebrow{color:rgba(243,234,219,.55)}
+.venir .h2 em{color:var(--saffron)}
+.v-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:clamp(30px,5vw,80px);margin-top:50px}
+.addr{font-family:var(--fd);font-size:clamp(30px,3.6vw,54px);line-height:1.05;letter-spacing:-.03em}
+.v-cta{display:flex;flex-wrap:wrap;gap:10px;margin-top:30px}
+.venir .btn-line{border-color:var(--paper)}
+.venir .btn-line:hover{background:var(--paper);color:var(--ink)}
+.hours{list-style:none}
+.hours li{display:flex;justify-content:space-between;padding:14px 0;border-bottom:1px solid rgba(243,234,219,.14);font-size:16px}
+.hours li b{font-family:var(--fm);font-weight:400}
+.hours li.today{color:var(--saffron)}
+.hours li.today span::after{content:" · aujourd'hui";font-size:13px;opacity:.8}
+.hours li.off b{opacity:.5}
+footer{background:var(--ink);color:rgba(243,234,219,.6);padding:40px var(--pad) calc(40px + env(safe-area-inset-bottom));border-top:1px solid rgba(243,234,219,.12);display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;font-size:14px}
+footer a{color:var(--paper)}
+.sign{text-decoration:none;display:inline-flex;align-items:center;gap:8px}
+.sign b{color:var(--saffron);font-weight:600}
+.big-word{font-family:var(--fd);font-style:italic;font-size:clamp(90px,22vw,360px);line-height:.8;letter-spacing:-.05em;color:rgba(243,234,219,.07);padding:0 var(--pad);overflow:hidden;white-space:nowrap;background:var(--ink);user-select:none}
+
+/* cursor */
+.cur{position:fixed;top:0;left:0;width:10px;height:10px;margin:-5px 0 0 -5px;border-radius:50%;background:var(--saffron);pointer-events:none;z-index:99;mix-blend-mode:multiply;transition:width .3s var(--ease),height .3s var(--ease),margin .3s var(--ease);display:none}
+.cur.big{width:46px;height:46px;margin:-23px 0 0 -23px;opacity:.5}
+@media (pointer:fine){.cur{display:block}}
+
+@media (max-width:900px){
+  .day-wrap,.grp,.v-grid{grid-template-columns:1fr}
+  .amlou-pin{grid-template-columns:1fr;min-height:auto;padding:90px var(--pad)}
+  .jar{width:min(300px,70%)}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .rv{opacity:1;transform:none}
+  .arch-big{opacity:1}
+}
+</style>
+</head>
+<body>
+<div class="grain" aria-hidden="true"></div>
+<div class="cur" aria-hidden="true"></div>
+<div class="pre" aria-hidden="true">
+  <div>
+    <svg viewBox="0 0 100 100"><path d="M50 4 L61 32 L92 28 L70 50 L92 72 L61 68 L50 96 L39 68 L8 72 L30 50 L8 28 L39 32 Z"/></svg>
+    <div class="n" id="preN">000</div>
+  </div>
+</div>
+
+<header class="nav" id="nav">
+  <a class="logo" href="#top" aria-label="Amlou, accueil">Amlou <span lang="ar">أملو</span></a>
+  <ul>
+    <li><a href="#journee">La journée</a></li>
+    <li><a href="#amlou">L'amlou</a></li>
+    <li><a href="#groupe">Groupes &amp; commandes</a></li>
+    <li><a href="#venir">Venir</a></li>
+  </ul>
+  <div class="nav-r">
+    <span class="status" id="status"><i></i><span>…</span></span>
+    <a class="btn btn-dark mag" href="https://maps.app.goo.gl/evWYPxND3edrFHAX7" target="_blank" rel="noopener">Itinéraire</a>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero" id="hero">
+    <div class="hero-top">
+      <p class="kicker">Maison marocaine · Caen</p>
+      <h1 class="h1"><span class="l"><span>Le Maroc se lève</span></span><span class="l"><span><em>rue Saint-Jean.</em></span></span></h1>
+      <div class="hero-cta">
+        <a class="btn btn-dark mag" href="#journee">Voir la journée</a>
+        <a class="btn btn-line mag" href="#groupe">Venir en groupe</a>
+      </div>
+    </div>
+    <div class="arch" id="arch">
+      <div class="zel"></div>
+      <div class="arch-in">
+        <div class="arch-ar" lang="ar">أملو</div>
+        <div class="arch-sub">Brunch marocain · toute la journée</div>
+      </div>
+      <p class="arch-big" id="archBig">Du mardi au dimanche,<br><em>de 9h30 à 19h.</em></p>
+    </div>
+    <div class="scroll-hint" aria-hidden="true">DÉFILEZ ↓</div>
+  </section>
+
+  <div class="marq" aria-hidden="true"><div class="marq-t">
+    <span>Brunch marocain</span><span>Plat du chef chaque midi</span><span>Mardi → dimanche</span><span>9h30 – 19h</span><span>8 rue Saint-Jean</span><span>Salon pour les groupes</span><span>À emporter, la veille</span>
+    <span>Brunch marocain</span><span>Plat du chef chaque midi</span><span>Mardi → dimanche</span><span>9h30 – 19h</span><span>8 rue Saint-Jean</span><span>Salon pour les groupes</span><span>À emporter, la veille</span>
+  </div></div>
+
+  <!-- PIÈCE MAÎTRESSE : la journée -->
+  <section class="sec" id="journee">
+    <p class="eyebrow rv"><b>01</b> La journée chez Amlou</p>
+    <h2 class="h2 rv">Choisissez votre <em>heure.</em></h2>
+    <p class="lead rv">Faites glisser le soleil. Du premier verre de thé du matin aux dernières lueurs de 19h, voyez ce qui vous attend à chaque moment.</p>
+
+    <div class="day-wrap">
+      <div class="rv">
+        <div class="scene" id="scene">
+          <svg viewBox="0 0 1000 620" role="img" aria-label="Vue de la salle à travers une fenêtre en arche, la lumière change selon l'heure choisie">
+            <defs>
+              <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1"><stop id="sk1" offset="0" stop-color="#F6C99A"/><stop id="sk2" offset="1" stop-color="#FBE7CC"/></linearGradient>
+              <clipPath id="win"><path d="M330 470 V250 A170 170 0 0 1 670 250 V470 Z"/></clipPath>
+              <pattern id="zp" width="40" height="40" patternUnits="userSpaceOnUse"><rect width="40" height="40" fill="#1F4D40"/><g fill="none" stroke="#E3A42B" stroke-width="1.2"><rect x="10" y="10" width="20" height="20"/><rect x="10" y="10" width="20" height="20" transform="rotate(45 20 20)"/></g></pattern>
+              <radialGradient id="glow"><stop offset="0" stop-color="#FFD58A" stop-opacity=".9"/><stop offset="1" stop-color="#FFD58A" stop-opacity="0"/></radialGradient>
+            </defs>
+            <rect width="1000" height="620" fill="#E9DAC2"/>
+            <g clip-path="url(#win)">
+              <rect x="300" y="60" width="400" height="420" fill="url(#sky)"/>
+              <circle id="sun" cx="350" cy="440" r="34" fill="#FFE2A3"/>
+              <g id="roofs" fill="#C9A27E">
+                <rect x="330" y="390" width="90" height="90"/><path d="M430 400 h70 v80 h-70z"/>
+                <circle cx="465" cy="400" r="35"/><rect x="510" y="370" width="40" height="110"/><rect x="522" y="340" width="16" height="30"/><rect x="560" y="405" width="110" height="75"/>
+              </g>
+            </g>
+            <path d="M330 470 V250 A170 170 0 0 1 670 250 V470" fill="none" stroke="url(#zp)" stroke-width="22"/>
+            <path d="M318 470 V250 A182 182 0 0 1 682 250 V470" fill="none" stroke="#17211D" stroke-width="2" opacity=".25"/>
+            <rect x="0" y="470" width="1000" height="150" fill="#D8C4A4"/>
+            <polygon id="beam" points="330,470 670,470 760,620 420,620" fill="#FFE9B8" opacity=".55"/>
+            <rect id="dusk" width="1000" height="620" fill="#22192C" opacity="0" pointer-events="none"/>
+            <!-- lantern -->
+            <g id="lantern" transform="translate(180 0)">
+              <line x1="0" y1="0" x2="0" y2="120" stroke="#17211D" stroke-width="2"/>
+              <circle id="lglow" cx="0" cy="170" r="90" fill="url(#glow)" opacity="0"/>
+              <path d="M-22 120 h44 l10 30 v40 l-10 30 h-44 l-10 -30 v-40z" fill="#B57B2A"/>
+              <path d="M-14 134 h28 l6 20 v32 l-6 20 h-28 l-6 -20 v-32z" id="lcore" fill="#5c4120"/>
+            </g>
+            <!-- table + tea -->
+            <ellipse cx="760" cy="535" rx="150" ry="26" fill="#1F4D40"/>
+            <rect x="750" y="535" width="20" height="70" fill="#17211D"/>
+            <ellipse cx="760" cy="605" rx="60" ry="10" fill="#17211D"/>
+            <g transform="translate(730 455)">
+              <path d="M0 0 h28 l-4 70 h-20z" fill="#F3EADB" opacity=".55" stroke="#E3A42B" stroke-width="2"/>
+              <path d="M2 22 h24 l-3 46 h-18z" fill="#B9722A"/>
+              <rect x="6" y="26" width="5" height="22" fill="#4C8A4A"/>
+              <g class="steam" transform="translate(14 -6)"><path d="M0 0 q-8 -14 0 -26 q8 -12 0 -24"/><path d="M-6 0 q-8 -14 0 -26 q8 -12 0 -24"/><path d="M6 0 q-8 -14 0 -26 q8 -12 0 -24"/></g>
+            </g>
+            <g transform="translate(790 480)">
+              <path d="M0 45 q0 -30 30 -38 q30 8 30 38z" fill="#C9604F"/><rect x="26" y="0" width="8" height="8" rx="4" fill="#C9604F"/>
+              <rect x="-6" y="44" width="72" height="8" rx="4" fill="#E3A42B"/>
+            </g>
+          </svg>
+        </div>
+        <div class="dial">
+          <div class="dial-row">
+            <div><p class="kicker">Heure choisie</p><div class="clock" id="clock">09:30</div></div>
+            <button class="now-btn" id="nowBtn" type="button">Maintenant</button>
+          </div>
+          <label for="hour" class="kicker" style="position:absolute;left:-9999px">Choisir une heure</label>
+          <input type="range" id="hour" min="570" max="1140" step="5" value="660">
+          <div class="ticks"><span>9h30</span><span>12h</span><span>14h30</span><span>17h</span><span>19h</span></div>
+        </div>
+      </div>
+
+      <aside class="moment rv" aria-live="polite">
+        <div class="swap" id="mSwap">
+          <p class="tag" id="mTag">Matin</p>
+          <h3 id="mTitle">Le premier <em>verre.</em></h3>
+          <p id="mText" style="margin-top:14px"></p>
+        </div>
+        <p class="closed-note" id="closedNote"></p>
+        <ul>
+          <li><span>Brunch marocain</span><b>9h30 → 19h</b></li>
+          <li><span>Plat du chef (change chaque jour)</span><b>chaque midi</b></li>
+          <li><span>Commandes à emporter</span><b>la veille</b></li>
+        </ul>
+      </aside>
+    </div>
+  </section>
+
+  <!-- AMLOU -->
+  <section class="amlou" id="amlou">
+    <div class="amlou-pin" id="amlouPin">
+      <div>
+        <svg class="jar" viewBox="0 0 300 380" aria-hidden="true">
+          <defs><clipPath id="jarC"><path d="M60 110 q-30 20 -30 70 v140 q0 40 40 40 h160 q40 0 40 -40 v-140 q0 -50 -30 -70z"/></clipPath></defs>
+          <g clip-path="url(#jarC)">
+            <rect x="0" y="0" width="300" height="380" fill="rgba(243,234,219,.06)"/>
+            <rect id="lay1" x="0" y="360" width="300" height="0" fill="#D9B98C"/>
+            <rect id="lay2" x="0" y="360" width="300" height="0" fill="#C98B2B"/>
+            <rect id="lay3" x="0" y="360" width="300" height="0" fill="#E9B44C"/>
+            <path id="swirl" d="M40 250 q60 -30 110 0 t110 0" fill="none" stroke="#8A5A22" stroke-width="5" stroke-linecap="round" opacity="0"/>
+          </g>
+          <path d="M60 110 q-30 20 -30 70 v140 q0 40 40 40 h160 q40 0 40 -40 v-140 q0 -50 -30 -70z" fill="none" stroke="#F3EADB" stroke-width="3"/>
+          <g id="lid"><rect x="62" y="70" width="176" height="40" rx="8" fill="#E3A42B"/><rect x="62" y="84" width="176" height="4" fill="#1F4D40" opacity=".4"/></g>
+          <g id="label" opacity="0"><rect x="85" y="200" width="130" height="78" rx="8" fill="#F3EADB"/><text x="150" y="238" text-anchor="middle" font-family="Fraunces,serif" font-size="30" font-style="italic" fill="#17211D">Amlou</text><text x="150" y="262" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="10" letter-spacing="2" fill="#1F4D40">BIO · CAEN</text></g>
+          <g id="drops" fill="#D9B98C"></g>
+        </svg>
+      </div>
+      <div>
+        <p class="eyebrow"><b>02</b> Le nom de la maison</p>
+        <h2 class="h2">Trois gestes, <em>un pot.</em></h2>
+        <ol class="steps">
+          <li class="step" data-s="1"><span>01</span><div><h4>Les amandes torréfiées</h4><p>Grillées puis broyées : c'est la base, et tout le goût.</p></div></li>
+          <li class="step" data-s="2"><span>02</span><div><h4>L'huile d'argan du Maroc</h4><p>Celle qui donne à l'amlou sa note profonde, presque noisette.</p></div></li>
+          <li class="step" data-s="3"><span>03</span><div><h4>Le miel pur</h4><p>Pour lier le tout. Rien d'autre.</p></div></li>
+        </ol>
+        <div class="labels"><span>Bio</span><span>Sans huile de palme</span><span>Sans conservateur</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GROUPES / COMMANDES -->
+  <section class="sec" id="groupe">
+    <p class="eyebrow rv"><b>03</b> Groupes &amp; à emporter</p>
+    <h2 class="h2 rv">Préparez votre venue, <em>on s'occupe du reste.</em></h2>
+    <p class="lead rv">Le salon se réserve pour les groupes, et les commandes à emporter se préparent la veille. Remplissez, on vous écrit le message : il ne reste qu'à l'envoyer.</p>
+
+    <div class="grp">
+      <div class="rv">
+        <div class="tabs" role="tablist">
+          <button role="tab" aria-selected="true" data-mode="salon" type="button">Réserver le salon</button>
+          <button role="tab" aria-selected="false" data-mode="emporter" type="button">Commander à emporter</button>
+        </div>
+        <div class="form">
+          <div class="field" id="fPeople">
+            <span class="lab">Nombre de personnes</span>
+            <div class="stepper"><button type="button" id="minus" aria-label="Retirer une personne">−</button><output id="people">6</output><button type="button" id="plus" aria-label="Ajouter une personne">+</button></div>
+          </div>
+          <div class="field"><label for="date">Date</label><input type="date" id="date"></div>
+          <div class="field" id="fMoment">
+            <span class="lab">Moment</span>
+            <div class="chips" data-group="moment"><button type="button" aria-pressed="true">le matin</button><button type="button" aria-pressed="false">le midi</button><button type="button" aria-pressed="false">l'après-midi</button></div>
+          </div>
+          <div class="field" id="fTime" hidden><label for="time">Heure de retrait</label><input type="time" id="time" value="11:00" min="09:30" max="19:00"></div>
+          <div class="field" id="fOcc">
+            <span class="lab">L'occasion</span>
+            <div class="chips" data-group="occ"><button type="button" aria-pressed="false">un anniversaire</button><button type="button" aria-pressed="false">un EVJF</button><button type="button" aria-pressed="false">un brunch entre collègues</button><button type="button" aria-pressed="true">juste le plaisir</button></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="letter rv">
+        <p class="to">À : @amloubrunch · message Instagram</p>
+        <p class="msg" id="msg"></p>
+        <div class="letter-cta">
+          <button class="btn btn-dark mag" id="copy" type="button">Copier le message</button>
+          <a class="btn btn-saf mag" id="openIg" href="https://ig.me/m/amloubrunch" target="_blank" rel="noopener">Ouvrir Instagram</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BON A SAVOIR -->
+  <section class="sec" id="savoir" style="padding-top:0">
+    <p class="eyebrow rv"><b>04</b> Bon à savoir</p>
+    <h2 class="h2 rv">Avant de <em>pousser la porte.</em></h2>
+    <div class="faq rv">
+      <details><summary>Peut-on réserver une table pour deux ?<i></i></summary><div class="ans"><p>Pas pour le moment : seules les réservations de groupe sont prises, dans le salon. Pour deux ou quatre, venez simplement, on vous accueille au fil de l'arrivée.</p></div></details>
+      <details><summary>Le brunch, c'est seulement le week-end ?<i></i></summary><div class="ans"><p>Non. Le brunch est servi du mardi au dimanche, de 9h30 à 19h. Vous pouvez bruncher à 16h un mercredi, c'est même conseillé.</p></div></details>
+      <details><summary>C'est quoi, le plat du chef ?<i></i></summary><div class="ans"><p>Un plat servi chaque midi, qui change tous les jours. Pour savoir ce qui mijote aujourd'hui, regardez les stories Instagram.</p></div></details>
+      <details><summary>Comment commander à emporter ?<i></i></summary><div class="ans"><p>Prévenez à l'avance, idéalement la veille, par message Instagram. Le formulaire juste au-dessus prépare le message pour vous.</p></div></details>
+    </div>
+  </section>
+
+  <!-- VENIR -->
+  <section class="sec venir" id="venir">
+    <p class="eyebrow rv"><b style="color:var(--saffron)">05</b> Venir</p>
+    <h2 class="h2 rv">Au cœur de Caen, <em>rue Saint-Jean.</em></h2>
+    <div class="v-grid">
+      <div class="rv">
+        <p class="addr">8 rue Saint-Jean<br>14000 Caen</p>
+        <div class="v-cta">
+          <a class="btn btn-saf mag" href="https://maps.app.goo.gl/evWYPxND3edrFHAX7" target="_blank" rel="noopener">Itinéraire</a>
+          <a class="btn btn-line mag" href="https://www.instagram.com/amloubrunch/" target="_blank" rel="noopener">Instagram</a>
+          <button class="btn btn-line mag" id="copyAddr" type="button">Copier l'adresse</button>
+        </div>
+      </div>
+      <ul class="hours rv" id="hours">
+        <li data-d="1" class="off"><span>Lundi</span><b>Fermé</b></li>
+        <li data-d="2"><span>Mardi</span><b>9h30 – 19h</b></li>
+        <li data-d="3"><span>Mercredi</span><b>9h30 – 19h</b></li>
+        <li data-d="4"><span>Jeudi</span><b>9h30 – 19h</b></li>
+        <li data-d="5"><span>Vendredi</span><b>9h30 – 19h</b></li>
+        <li data-d="6"><span>Samedi</span><b>9h30 – 19h</b></li>
+        <li data-d="0"><span>Dimanche</span><b>9h30 – 19h</b></li>
+      </ul>
+    </div>
+  </section>
+  <div class="big-word" aria-hidden="true">Amlou · أملو · Amlou</div>
+</main>
+
+<footer>
+  <span>© Amlou, Maison marocaine · 8 rue Saint-Jean, 14000 Caen · <a href="#">Mentions légales</a> · Proposition de maquette</span>
+  <a class="sign" href="https://the-one-studio-ten.vercel.app" target="_blank" rel="noopener">Site réalisé par <b>The One</b> ↗</a>
+</footer>
+<div class="toast" id="toast" role="status"></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
+<script>
+(function(){
+const RM = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const $ = s => document.querySelector(s), $$ = s => [...document.querySelectorAll(s)];
+const hasG = window.gsap && window.ScrollTrigger;
+
+/* ---------- Paris time + open status ---------- */
+function paris(){
+  const p = new Intl.DateTimeFormat('en-GB',{timeZone:'Europe/Paris',weekday:'short',hour:'2-digit',minute:'2-digit',hour12:false}).formatToParts(new Date());
+  const g = t => p.find(x=>x.type===t).value;
+  const days={Sun:0,Mon:1,Tue:2,Wed:3,Thu:4,Fri:5,Sat:6};
+  return {d:days[g('weekday')], m:(+g('hour'))%24*60 + (+g('minute'))};
+}
+const P = paris();
+const isOpen = P.d!==1 && P.m>=570 && P.m<1140;
+const st = $('#status');
+st.classList.toggle('open',isOpen);
+st.lastElementChild.textContent = isOpen ? 'Ouvert · jusqu\'à 19h' : (P.d===1 ? 'Fermé · dès mardi 9h30' : (P.m<570 ? 'Ouvre à 9h30' : 'Fermé · demain 9h30'));
+if(!isOpen && P.d===6 && P.m>=1140) st.lastElementChild.textContent='Fermé · demain 9h30';
+if(!isOpen && P.d===0 && P.m>=1140) st.lastElementChild.textContent='Fermé · dès mardi 9h30';
+const td = $('#hours [data-d="'+P.d+'"]'); if(td) td.classList.add('today');
+
+/* ---------- preloader ---------- */
+const pre=$('.pre'), preN=$('#preN');
+let c=0; const tick=setInterval(()=>{c=Math.min(100,c+Math.ceil(Math.random()*14));preN.textContent=String(c).padStart(3,'0');if(c>=100){clearInterval(tick);setTimeout(start,180)}},RM?1:70);
+function start(){
+  pre.classList.add('out'); setTimeout(()=>pre.remove(),1100);
+  if(hasG && !RM){
+    gsap.from('.h1 .l>span',{yPercent:110,duration:1.2,ease:'expo.out',stagger:.1,delay:.15});
+    gsap.from('.kicker, .hero-cta',{opacity:0,y:16,duration:1,ease:'expo.out',delay:.4,stagger:.08});
+    gsap.from('#arch',{yPercent:100,duration:1.4,ease:'expo.out',delay:.25});
+  }
+}
+
+/* ---------- smooth scroll ---------- */
+let lenis;
+if(window.Lenis && !RM){
+  lenis = new Lenis({lerp:.1});
+  if(hasG){lenis.on('scroll',ScrollTrigger.update);gsap.ticker.add(t=>lenis.raf(t*1000));gsap.ticker.lagSmoothing(0)}
+  else{const r=t=>{lenis.raf(t);requestAnimationFrame(r)};requestAnimationFrame(r)}
+  $$('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{const t=$(a.getAttribute('href'));if(t){e.preventDefault();lenis.scrollTo(t,{offset:-60})}}));
+}
+
+/* nav */
+const nav=$('#nav'); const onS=()=>nav.classList.toggle('solid',scrollY>40); addEventListener('scroll',onS,{passive:true}); onS();
+
+/* reveals */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.15});
+$$('.rv').forEach(el=>io.observe(el));
+
+/* ---------- hero arch ---------- */
+if(hasG && !RM){
+  gsap.registerPlugin(ScrollTrigger);
+  const tl=gsap.timeline({scrollTrigger:{trigger:'#hero',start:'top top',end:'+=120%',scrub:.8,pin:true}});
+  tl.to('.hero-top',{y:-120,opacity:0,ease:'none',duration:.4},0)
+    .to('#arch',{width:'100vw',height:'100%',borderRadius:'0px 0px 0px 0px',ease:'power2.inOut',duration:1},0)
+    .to('.arch-in',{y:-80,ease:'none',duration:1},0)
+    .to('#archBig',{opacity:1,y:0,duration:.4},.65)
+    .fromTo('#archBig',{y:40},{y:0,duration:.4},.65);
+} else { $('#archBig').style.opacity=1; }
+
+/* ---------- PIÈCE MAÎTRESSE : journée ---------- */
+const hx=h=>[1,3,5].map(i=>parseInt(h.slice(i,i+2),16));
+const mix=(a,b,t)=>{a=hx(a);b=hx(b);return 'rgb('+a.map((v,i)=>Math.round(v+(b[i]-v)*t)).join(',')+')'};
+const keys=[[0,'#F6C99A','#FBE7CC','#C9A27E'],[.38,'#A9D3CB','#F2EBDD','#B89A7A'],[.72,'#F0A85E','#F7D7A6','#9A6B4E'],[1,'#4A2C4F','#D9776B','#3A2A3A']];
+function pal(t){for(let i=0;i<keys.length-1;i++){const a=keys[i],b=keys[i+1];if(t<=b[0]){const k=(t-a[0])/(b[0]-a[0]);return [mix(a[1],b[1],k),mix(a[2],b[2],k),mix(a[3],b[3],k)]}}return keys[3].slice(1)}
+const moments=[
+  {to:690,tag:'Matin · 9h30 – 11h30',title:'Le premier <em>verre.</em>',text:'Les portes s\'ouvrent à 9h30. Le brunch marocain est servi dès le premier thé : prenez le temps, la journée commence ici.'},
+  {to:870,tag:'Midi · 11h30 – 14h30',title:'L\'heure du <em>chef.</em>',text:'Chaque midi, un plat du chef qui change tous les jours, en plus du brunch. Ce qui mijote aujourd\'hui ? Les stories Instagram vous le disent.'},
+  {to:1020,tag:'Après-midi · 14h30 – 17h',title:'Le brunch <em>continue.</em>',text:'Ici, le brunch ne s\'arrête pas à midi. Un mercredi à 16h ? C\'est exactement le bon moment.'},
+  {to:1141,tag:'Fin de journée · 17h – 19h',title:'Les dernières <em>lanternes.</em>',text:'La lumière devient dorée, les lanternes prennent le relais. Dernier service avant la fermeture à 19h.'}
+];
+const R=$('#hour'), sun=$('#sun'), sk1=$('#sk1'), sk2=$('#sk2'), roofs=$('#roofs'), beam=$('#beam'), dusk=$('#dusk'), lglow=$('#lglow'), lcore=$('#lcore');
+let curM=-1;
+function setHour(m){
+  const t=(m-570)/570;
+  const [a,b,r]=pal(t);
+  sk1.setAttribute('stop-color',a); sk2.setAttribute('stop-color',b); roofs.setAttribute('fill',r);
+  sun.setAttribute('cx',350+t*300); sun.setAttribute('cy',450-Math.sin(Math.PI*t)*230);
+  sun.setAttribute('fill',t>.8?'#FFB27A':'#FFE2A3');
+  const sk=(.5-t)*520; beam.setAttribute('points',`330,470 670,470 ${670+sk+90},620 ${330+sk+90},620`);
+  beam.setAttribute('opacity',(.6-Math.max(0,t-.6)*1.2).toFixed(2));
+  const ev=Math.max(0,(t-.7)/.3);
+  dusk.setAttribute('opacity',(ev*.32).toFixed(2)); lglow.setAttribute('opacity',ev.toFixed(2)); lcore.setAttribute('fill',ev>.3?'#FFD58A':'#5c4120');
+  const h=Math.floor(m/60), mm=m%60; $('#clock').textContent=String(h).padStart(2,'0')+':'+String(mm).padStart(2,'0');
+  const idx=moments.findIndex(x=>m<x.to);
+  if(idx!==curM){
+    curM=idx; const s=$('#mSwap'); s.classList.add('out');
+    setTimeout(()=>{const x=moments[idx];$('#mTag').textContent=x.tag;$('#mTitle').innerHTML=x.title;$('#mText').textContent=x.text;s.classList.remove('out')},curM===-1?0:220);
+  }
+}
+R.addEventListener('input',()=>setHour(+R.value));
+$('#nowBtn').addEventListener('click',()=>{
+  const n=paris(); const note=$('#closedNote');
+  let v=Math.min(1140,Math.max(570,n.m)); R.value=v; setHour(v);
+  if(n.d===1){note.textContent='Aujourd\'hui c\'est lundi : la maison se repose. On vous attend dès mardi 9h30.';note.classList.add('on')}
+  else if(n.m<570||n.m>=1140){note.textContent='Nous sommes fermés à cette heure-ci. Prochaine ouverture : 9h30.';note.classList.add('on')}
+  else {note.textContent='C\'est ouvert en ce moment. Bonne idée.';note.classList.add('on')}
+});
+// drag on scene (desktop & touch horizontal)
+const sc=$('#scene'); let drag=false;
+const fromX=e=>{const r=sc.getBoundingClientRect();const x=(e.clientX-r.left)/r.width;const v=Math.round((570+Math.min(1,Math.max(0,(x-.3)/.4))*570)/5)*5;R.value=v;setHour(v)};
+sc.addEventListener('pointerdown',e=>{drag=true;fromX(e)});
+addEventListener('pointermove',e=>{if(drag)fromX(e)});
+addEventListener('pointerup',()=>drag=false);
+setHour(+R.value);
+// auto-sweep once when in view
+if(!RM){const sio=new IntersectionObserver(es=>{if(es[0].isIntersecting){sio.disconnect();let v=570;const go=()=>{v+=6;if(v>660){R.value=660;setHour(660);return}R.value=v;setHour(v);requestAnimationFrame(go)};go()}},{threshold:.5});sio.observe(sc)}
+
+/* ---------- Amlou jar ---------- */
+const steps=$$('.step');
+const setLayer=(id,y,h)=>{const el=$(id);el.setAttribute('y',y);el.setAttribute('height',h)};
+if(hasG && !RM && innerWidth>900){
+  const st={a:0,b:0,c:0,l:0};
+  const draw=()=>{
+    const base=360, h1=st.a*90, h2=st.b*80, h3=st.c*70;
+    setLayer('#lay1',base-h1,h1); setLayer('#lay2',base-h1-h2,h2); setLayer('#lay3',base-h1-h2-h3,h3);
+    $('#swirl').setAttribute('opacity',st.c>.9?1:0);
+    $('#lid').setAttribute('transform',`translate(0 ${-60+st.l*60}) rotate(${-12+st.l*12} 150 90)`);
+    $('#label').setAttribute('opacity',st.l);
+    steps.forEach((s,i)=>s.classList.toggle('on',[st.a,st.b,st.c][i]>.05));
+  };
+  draw();
+  gsap.timeline({scrollTrigger:{trigger:'#amlouPin',start:'top top',end:'+=220%',scrub:.6,pin:true},onUpdate:draw})
+    .to(st,{a:1,duration:1,ease:'none'}).to(st,{b:1,duration:1,ease:'none'}).to(st,{c:1,duration:1,ease:'none'}).to(st,{l:1,duration:.7,ease:'power2.out'});
+} else {
+  setLayer('#lay1',270,90);setLayer('#lay2',190,80);setLayer('#lay3',120,70);$('#label').setAttribute('opacity',1);steps.forEach(s=>s.classList.add('on'));
+}
+
+/* ---------- Group / order builder ---------- */
+let mode='salon', people=6;
+const fmtDate=v=>{if(!v)return null;const d=new Date(v+'T12:00:00');return d.toLocaleDateString('fr-FR',{weekday:'long',day:'numeric',month:'long'})};
+const dIn=$('#date'); const tmr=new Date(Date.now()+864e5); dIn.min=new Date().toISOString().slice(0,10); dIn.value=new Date(Date.now()+3*864e5).toISOString().slice(0,10);
+const pick=g=>$(`.chips[data-group="${g}"] [aria-pressed="true"]`)?.textContent;
+function msg(){
+  const d=fmtDate(dIn.value)||'[date]';
+  let html;
+  if(mode==='salon'){
+    const occ=pick('occ'); const o= occ==='juste le plaisir' ? 'juste pour le plaisir' : 'pour '+occ;
+    html=`Bonjour Amlou ! Nous aimerions réserver le salon pour <mark>${people} personnes</mark>, le <mark>${d}</mark>, <mark>${pick('moment')}</mark>, ${o}. Est-ce possible ? Merci beaucoup !`;
+  } else {
+    html=`Bonjour Amlou ! Je voudrais passer une commande à emporter pour <mark>${people} personne${people>1?'s':''}</mark>, à récupérer le <mark>${d}</mark> vers <mark>${($('#time').value||'11:00').replace(':','h')}</mark>. Que me conseillez-vous ? Merci !`;
+  }
+  $('#msg').innerHTML=html;
+}
+$$('.tabs button').forEach(b=>b.addEventListener('click',()=>{
+  $$('.tabs button').forEach(x=>x.setAttribute('aria-selected',x===b));mode=b.dataset.mode;
+  $('#fMoment').hidden=mode!=='salon';$('#fOcc').hidden=mode!=='salon';$('#fTime').hidden=mode==='salon';
+  if(mode==='emporter'&&people>4)people=2; if(mode==='salon'&&people<4)people=6; $('#people').textContent=people; msg();
+}));
+$$('.chips').forEach(g=>g.addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;g.querySelectorAll('button').forEach(x=>x.setAttribute('aria-pressed',x===b));msg()}));
+$('#minus').onclick=()=>{people=Math.max(1,people-1);$('#people').textContent=people;msg()};
+$('#plus').onclick=()=>{people=Math.min(40,people+1);$('#people').textContent=people;msg()};
+dIn.addEventListener('input',msg);$('#time').addEventListener('input',msg);
+msg();
+const toast=t=>{const el=$('#toast');el.textContent=t;el.classList.add('on');clearTimeout(el._t);el._t=setTimeout(()=>el.classList.remove('on'),2200)};
+const copy=async(txt,ok)=>{try{await navigator.clipboard.writeText(txt);toast(ok)}catch(e){const ta=document.createElement('textarea');ta.value=txt;document.body.appendChild(ta);ta.select();document.execCommand('copy');ta.remove();toast(ok)}};
+$('#copy').onclick=()=>copy($('#msg').textContent,'Message copié. Collez-le dans Instagram.');
+$('#openIg').addEventListener('click',()=>{navigator.clipboard&&navigator.clipboard.writeText($('#msg').textContent).catch(()=>{});toast('Message copié, Instagram s\'ouvre…')});
+$('#copyAddr').onclick=()=>copy('8 rue Saint-Jean, 14000 Caen','Adresse copiée.');
+
+/* ---------- FAQ smooth ---------- */
+$$('.faq details').forEach(d=>{
+  const s=d.querySelector('summary'), a=d.querySelector('.ans');
+  s.addEventListener('click',e=>{
+    if(RM)return; e.preventDefault();
+    if(d.open){const h=a.scrollHeight;a.animate([{height:h+'px'},{height:'0px'}],{duration:400,easing:'cubic-bezier(.16,1,.3,1)'}).onfinish=()=>d.open=false}
+    else{d.open=true;const h=a.scrollHeight;a.animate([{height:'0px'},{height:h+'px'}],{duration:500,easing:'cubic-bezier(.16,1,.3,1)'})}
+  });
+});
+
+/* ---------- cursor + magnetic ---------- */
+if(matchMedia('(pointer:fine)').matches && !RM){
+  const cur=$('.cur'); let x=0,y=0,cx=0,cy=0;
+  addEventListener('pointermove',e=>{x=e.clientX;y=e.clientY});
+  (function loop(){cx+=(x-cx)*.2;cy+=(y-cy)*.2;cur.style.transform=`translate(${cx}px,${cy}px)`;requestAnimationFrame(loop)})();
+  $$('a,button,input,summary,.scene').forEach(el=>{el.addEventListener('pointerenter',()=>cur.classList.add('big'));el.addEventListener('pointerleave',()=>cur.classList.remove('big'))});
+  $$('.mag').forEach(b=>{
+    b.addEventListener('pointermove',e=>{const r=b.getBoundingClientRect();b.style.transform=`translate(${(e.clientX-r.left-r.width/2)*.18}px,${(e.clientY-r.top-r.height/2)*.25}px)`});
+    b.addEventListener('pointerleave',()=>b.style.transform='');
+  });
+}
+})();
+</script>
+</body>
+</html>
